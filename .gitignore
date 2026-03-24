@@ -23,7 +23,9 @@ dist/
 # Planning & memory (local to developer)
 planning/
 memory/
-progress.md
 HANDOVER.md
+
+# Claude Code working files (keep skills and settings, ignore ephemeral data)
 .claude/plans/
 .claude/worktrees/
+.claude/todos/
