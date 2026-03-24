@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+.netlify/
+
+# Environment variables (NEVER commit these)
+.env
+.env.local
+.env.production
+
+# Editor & OS
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
+# React Router generated types
+.react-router/
+
+# Planning & memory (local to developer)
+planning/
+memory/
+progress.md
+HANDOVER.md
+.claude/plans/
+.claude/worktrees/
