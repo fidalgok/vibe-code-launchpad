@@ -35,7 +35,6 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
       });
-
       const data = await response.json();
 
       if (!response.ok) {
@@ -44,6 +43,7 @@ export default function Home() {
         setResult(data.result);
       }
     } catch (err) {
+      console.error("Error calling Gemini API:", err);
       setError("Could not reach the server. Is it running?");
     } finally {
       setLoading(false);

@@ -29,7 +29,7 @@ export async function action({ request }: Route.ActionArgs) {
     if (!prompt || typeof prompt !== "string") {
       return Response.json(
         { error: "Missing or invalid 'prompt' in request body" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
