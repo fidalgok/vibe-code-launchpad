@@ -2,38 +2,53 @@
 
 This guide walks you through your very first session with this template. By the end, you'll have a working app running on your computer and an AI coding assistant ready to help you build.
 
+> **The #1 thing to remember:** When you get stuck at any point in this guide — or at any point while building — **ask your AI coding assistant for help.** That's what it's there for. Paste the error message, describe what you're trying to do, and let it figure it out. The AI already knows everything about this project and how to help you.
+
 ---
 
 ## Before You Begin
 
 You need three things installed and one account set up. This takes about 15 minutes.
 
+**If you run into trouble installing anything below, ask your AI assistant for help once you have it set up (Step 2). It can walk you through troubleshooting.**
+
 ### 1. Install Node.js
 
 Node.js is what runs your app on your computer.
 
-- Go to [nodejs.org](https://nodejs.org) and click the big green **LTS** button
-- Run the installer with all the default settings
-- To check it worked, open a terminal and type: `node --version`
-  - **Mac:** Open the app called "Terminal" (search for it in Spotlight)
-  - **Windows:** Open "Command Prompt" or "PowerShell" from the Start menu
-- You should see a version number like `v22.16.0`. If so, you're good.
+1. Go to the [Node.js download page](https://nodejs.org/en/download)
+2. Download the **LTS** version (currently v24) for your operating system
+
+**Mac users — which download do I pick?**
+Click the Apple menu () in the top-left corner of your screen and choose **"About This Mac."**
+- If you see **Chip** followed by "M1," "M2," "M3," or "M4" → download the **ARM64** version
+- If you see **Processor** followed by "Intel" → download the **x64** version
+- Any Mac from 2021 or later is almost certainly ARM64
+
+**Windows users:**
+Choose the **x64** installer unless you know you have an ARM-based Windows device (like a Surface Pro X). If you're not sure, x64 is almost always correct.
+
+3. Run the installer with all the default settings
+4. To verify it worked, open a terminal and type: `node --version`
+   - **Mac:** Open the app called "Terminal" (search for it in Spotlight)
+   - **Windows:** Open "Command Prompt" or "PowerShell" from the Start menu
+   - You should see something like `v24.14.1`. Any v24+ means you're good.
 
 ### 2. Install an AI Coding Tool
 
-You need an AI assistant that can read and edit the files in your project. Here are your options:
+You need an AI assistant that can read and edit the files in your project. Pick one:
 
-| Tool | Best for | What you need |
+| Tool | Best for | Cost |
 |---|---|---|
-| **[Cursor](https://cursor.com)** | Easiest to start with. Visual editor with AI chat built in. | Free tier available. Supports Claude, GPT-4, and other models if you have a subscription. |
-| **[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)** | Most powerful. Works in the terminal or as a desktop app. | Claude Pro/Max subscription ($20+/mo). |
-| **[OpenAI Codex](https://openai.com/index/introducing-codex/)** | Good if you already use ChatGPT. Terminal-based. | ChatGPT Pro subscription. |
+| **[Cursor](https://cursor.com)** | Easiest to start with. Visual editor with AI chat built in. | Free tier includes generous usage. Supports Claude, GPT-5, Gemini, and more. |
+| **[Claude Code Desktop](https://code.claude.com/docs/en/desktop-quickstart)** | Powerful and approachable. Desktop app with visual interface. | Claude Pro subscription ($20/mo) or Max ($100/mo). |
+| **[OpenAI Codex](https://openai.com/codex/)** | Good if you already use ChatGPT. | Free to start with a ChatGPT account. |
 
-**Not sure? Start with Cursor.** It's the most visual and works with any AI subscription you already have.
+**Not sure? Start with Cursor.** It's the most visual, has a free tier, and works with many different AI models.
 
 ### 3. Get a Gemini API Key
 
-This is a free password that lets your app talk to Google's AI.
+This is a free key that lets your app talk to Google's AI.
 
 1. Go to [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
 2. Sign in with your Google account
@@ -65,8 +80,10 @@ This is a free password that lets your app talk to Google's AI.
 Open your AI coding tool and open this folder:
 
 - **Cursor:** File > Open Folder > select the project folder
-- **Claude Code (terminal):** `cd path/to/your/project` then type `claude`
-- **Claude Code (desktop):** Open the app, click "Open Project", select the folder
+- **Claude Code Desktop:** Open the app, click "Open Project", select the folder
+- **Codex / Claude Code CLI:** Open a terminal, `cd path/to/your/project`, then type `codex` or `claude`
+
+**From this point forward, your AI assistant can help you with every remaining step.** If anything below is confusing, just ask it: "Help me set up this project."
 
 ---
 
@@ -74,7 +91,7 @@ Open your AI coding tool and open this folder:
 
 Open a terminal inside your tool:
 - **Cursor:** Terminal > New Terminal (or press Ctrl+\` on the keyboard)
-- **Claude Code:** You're already in the terminal
+- **Claude Code / Codex:** You're already in the terminal
 
 Run this command to install the code libraries your app needs:
 
@@ -86,13 +103,18 @@ This downloads everything. It might take a minute — that's normal.
 
 Next, you need to create a settings file for your API key. You have a few options:
 
-**Option A — Use a command:**
+**Option A — Ask your AI assistant:**
+> "Help me set up the .env file with my Gemini API key."
+
+It will create the file and tell you where to paste your key.
+
+**Option B — Use a command:**
 ```
 cp .env.example .env
 ```
 (On Windows, use `copy .env.example .env` instead)
 
-**Option B — Do it manually:**
+**Option C — Do it manually:**
 1. Find the file called `.env.example` in your project
 2. Make a copy of it (right-click > Duplicate, or Copy + Paste)
 3. Rename the copy to just `.env` (remove the `.example` part)
@@ -115,6 +137,8 @@ Open your web browser and go to **http://localhost:5173**
 
 You should see a page that says **"Your app is ready to build"** with a box where you can type a question for Gemini. Try it! Type something and click "Send to Gemini." If you get a response, everything is working.
 
+**Something went wrong?** Ask your AI assistant: "I ran npm run dev but [describe what happened]." Paste any error messages you see.
+
 ---
 
 ## Step 5: Start Building with Your AI Assistant
@@ -122,9 +146,10 @@ You should see a page that says **"Your app is ready to build"** with a box wher
 Now the fun part. Open the AI chat in your tool:
 
 - **Cursor:** Click the chat icon in the sidebar (or press Cmd+L / Ctrl+L)
-- **Claude Code:** Just type in the terminal — it's already your chat
+- **Claude Code Desktop:** The chat is the main interface — just type
+- **Codex / Claude Code CLI:** Just type in the terminal — it's already your chat
 
-Your AI assistant already knows about this project. It's been given detailed instructions (in the `AGENTS.md` file) about the technology, the security rules, and how to help non-technical users. You don't need to explain any of that.
+Your AI assistant already knows about this project. It's been given detailed instructions (in the `AGENTS.md` file) about the technology, the security rules, and how to help non-technical users. You don't need to explain any of that — just describe what you want.
 
 ### Importing your prototype
 
@@ -187,7 +212,7 @@ Your `.env` file only works on your computer. Netlify needs its own copy of thos
 
 ## When You're Stuck
 
-1. **Ask your AI assistant first.** Describe the problem in plain language. Paste any error messages.
+1. **Ask your AI assistant first.** This is always step one. Describe the problem in plain language. Paste any error messages. It knows this project inside and out.
 2. **Restart the dev server.** Press Ctrl+C in the terminal to stop it, then run `npm run dev` again.
 3. **Check that `.env` exists** and has your API key in it.
 4. **Run `npm install`** — sometimes dependencies get out of sync.
