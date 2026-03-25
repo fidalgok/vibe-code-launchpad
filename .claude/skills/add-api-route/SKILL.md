@@ -63,14 +63,14 @@ export async function action({ request }) {
   const body = await request.json();
   // Validate input
   if (!body.input || typeof body.input !== "string") {
-    return Response.json({ error: "Missing input" }, { status: 400 });
+    return { error: "Missing input" };
   }
   try {
     const result = await [featureName](body.input);
-    return Response.json({ result });
+    return { result };
   } catch (error) {
     console.error("[Feature] error:", error);
-    return Response.json({ error: "Something went wrong" }, { status: 500 });
+    return { error: "Something went wrong" };
   }
 }
 
@@ -88,18 +88,8 @@ Add an `action` function to the existing route file and use `useFetcher` in the 
 
 ## Step 4: Wire Up the Frontend
 
-Show the user how to call the new endpoint:
+**Always use `useFetcher` from React Router** — not raw `fetch()`. React Router uses its own internal data format, so raw `fetch` calls to action routes won't parse correctly.
 
-```typescript
-const response = await fetch("/api/[feature-name]", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ input: userInput }),
-});
-const data = await response.json();
-```
-
-Or with React Router's `useFetcher` (better for forms):
 ```typescript
 import { useFetcher } from "react-router";
 

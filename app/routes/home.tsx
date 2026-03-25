@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useFetcher } from "react-router";
 import {
   Sparkles,
   Rocket,
@@ -17,37 +18,24 @@ import {
  */
 export default function Home() {
   const [prompt, setPrompt] = useState("");
-  const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const fetcher = useFetcher<{ result?: string; error?: string }>();
 
-  async function handleSubmit(e: React.FormEvent) {
+  const loading = fetcher.state === "submitting";
+  const result = fetcher.data?.result ?? "";
+  const error = fetcher.data?.error ?? "";
+
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!prompt.trim()) return;
 
-    setLoading(true);
-    setError("");
-    setResult("");
-
-    try {
-      const response = await fetch("/api/gemini", {
+    fetcher.submit(
+      { prompt },
+      {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.error || "Something went wrong");
-      } else {
-        setResult(data.result);
-      }
-    } catch (err) {
-      console.error("Error calling Gemini API:", err);
-      setError("Could not reach the server. Is it running?");
-    } finally {
-      setLoading(false);
-    }
+        action: "/api/gemini",
+        encType: "application/json",
+      },
+    );
   }
 
   return (

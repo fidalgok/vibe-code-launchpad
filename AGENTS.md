@@ -143,7 +143,7 @@ export async function analyzeDocument(text: string) {
 
 ### Step 2: Create an API route OR use a route action
 
-**Option A — API route** (good for standalone features):
+**Option A — Separate API route** (good for standalone features):
 ```typescript
 // app/routes/api.analyze.tsx
 import { analyzeDocument } from "~/lib/my-feature.server";
@@ -151,8 +151,10 @@ import { analyzeDocument } from "~/lib/my-feature.server";
 export async function action({ request }) {
   const { text } = await request.json();
   const result = await analyzeDocument(text);
-  return Response.json({ result });
+  return { result };
 }
+
+export default function () { return null; }
 ```
 
 **Option B — Route action** (good when the AI feature is part of a page):
@@ -166,21 +168,47 @@ export async function action({ request }) {
 }
 ```
 
+**Important:** Actions return plain objects. React Router handles serialization automatically. Do NOT use `Response.json()` or raw `fetch()` — use `useFetcher` on the client.
+
 ### Step 3: Call it from the frontend
 
-```typescript
-// Using fetch (Option A):
-const res = await fetch("/api/analyze", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ text }),
-});
-const data = await res.json();
+**Always use `useFetcher` from React Router** — not raw `fetch()`. React Router uses its own data format internally, so raw `fetch` calls to action routes won't parse correctly.
 
-// Using useFetcher (Option B — React Router way):
-const fetcher = useFetcher();
-fetcher.submit({ text }, { method: "POST" });
-// Result appears in fetcher.data
+```typescript
+import { useFetcher } from "react-router";
+
+function MyComponent() {
+  const fetcher = useFetcher<{ result?: string; error?: string }>();
+  const isLoading = fetcher.state === "submitting";
+
+  return (
+    <>
+      <button
+        onClick={() =>
+          fetcher.submit(
+            { text: "analyze this" },
+            { method: "POST", action: "/api/analyze", encType: "application/json" }
+          )
+        }
+        disabled={isLoading}
+      >
+        {isLoading ? "Processing..." : "Analyze"}
+      </button>
+      {fetcher.data?.result && <p>{fetcher.data.result}</p>}
+      {fetcher.data?.error && <p className="text-red-600">{fetcher.data.error}</p>}
+    </>
+  );
+}
+```
+
+Or with a form:
+```typescript
+<fetcher.Form method="post" action="/api/analyze">
+  <input name="text" />
+  <button type="submit" disabled={isLoading}>
+    {isLoading ? "Processing..." : "Submit"}
+  </button>
+</fetcher.Form>
 ```
 
 ---
