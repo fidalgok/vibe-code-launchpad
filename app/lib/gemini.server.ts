@@ -17,7 +17,7 @@ function getClient() {
     throw new Error(
       "GEMINI_API_KEY is not set. " +
         "Copy .env.example to .env and add your API key. " +
-        "Get a free key at https://aistudio.google.com/apikey"
+        "Get a free key at https://aistudio.google.com/apikey",
     );
   }
   return new GoogleGenAI({ apiKey });
@@ -35,10 +35,10 @@ export async function generateText(
   options?: {
     model?: string;
     systemInstruction?: string;
-  }
+  },
 ) {
   const ai = getClient();
-  const model = options?.model ?? "gemini-2.5-flash-preview-05-20";
+  const model = options?.model ?? "gemini-3-flash-preview";
 
   const response = await ai.models.generateContent({
     model,
@@ -64,7 +64,7 @@ export async function generateJSON<T = unknown>(
   options?: {
     model?: string;
     systemInstruction?: string;
-  }
+  },
 ): Promise<T> {
   const ai = getClient();
   const model = options?.model ?? "gemini-2.5-flash-preview-05-20";
