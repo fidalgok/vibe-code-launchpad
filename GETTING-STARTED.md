@@ -100,9 +100,25 @@ Your AI assistant has been given detailed instructions (in `CLAUDE.md`) about th
 
 Once you're comfortable with the basics:
 
-1. **Add authentication** — if your app needs to know who's using it
-2. **Add more AI features** — structured output, document analysis, chat interfaces
-3. **Deploy** — get your app live on the internet
+1. **Add more AI features** — structured output, document analysis, chat interfaces
+2. **Add authentication** — if your app needs to know who's using it
+3. **Deploy** — get your app live on the internet (see below)
 4. **Share** — send the URL to people and get feedback
 
 Remember: your AI assistant is your technical partner. Don't be afraid to ask it anything — that's what it's there for.
+
+## Deploying Your App
+
+When you're ready to put your app on the internet, tell your AI assistant: "Help me deploy this to Netlify." It will walk you through every step.
+
+The key things you'll need:
+- A **GitHub account** (free) — this is where your code lives online
+- A **Netlify account** (free) — this is what turns your code into a live website
+
+**Important: Don't forget to add your API keys to Netlify!** Your `.env` file only works on your computer. When your app runs on Netlify, it needs its own copy of those secrets:
+
+1. In Netlify, go to **Site configuration** > **Environment variables**
+2. Add each variable from your `.env` file (like `GEMINI_API_KEY`)
+3. Trigger a redeploy
+
+Without this step, your app will load but any AI features will fail with an error. This is the #1 thing people miss on their first deploy.

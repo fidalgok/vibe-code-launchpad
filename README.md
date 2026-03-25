@@ -48,7 +48,18 @@ When you're ready to share your app, ask your AI assistant:
 
 > "Help me deploy this to Netlify."
 
-The assistant will walk you through setting up GitHub and Netlify (both free).
+The assistant will walk you through setting up GitHub and Netlify (both free). The short version:
+
+1. **Push your code to GitHub** — create a repo and push
+2. **Create a free Netlify account** at [app.netlify.com](https://app.netlify.com/signup) (sign up with GitHub)
+3. **Import your repo** — Add new site > Import an existing project > choose your GitHub repo
+4. **Set your environment variables on Netlify** — this is the step people miss!
+   - Go to **Site configuration > Environment variables**
+   - Add `GEMINI_API_KEY` with your real API key
+   - (Add any other secrets from your `.env` file too)
+5. **Trigger a redeploy** — Deploys > Trigger deploy > Deploy site
+
+Your `.env` file only works locally. Netlify needs its own copy of those secrets, set through its dashboard. Without this step, your AI features won't work on the live site.
 
 ## Project Structure
 
