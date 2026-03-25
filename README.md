@@ -1,94 +1,55 @@
 # Vibe Code Launchpad
 
-A starter template for turning your AI Studio / Bolt / Replit / Lovable prototype into a real, deployable web app.
+A starter template for turning AI prototypes into real, deployable web apps. Built for non-technical users working with AI coding assistants.
 
-## What This Is
+**New here? Read [GETTING-STARTED.md](GETTING-STARTED.md)** — it walks you through everything step by step.
 
-You built something cool in a vibe-coding platform. This template helps you take that idea and turn it into a real application that:
-
-- Lives at its own URL on the internet
-- Keeps your API keys safe (not exposed to anyone who visits)
-- Can grow as you add features
-- Deploys automatically when you push changes
-
-## What You Need
-
-1. **Node.js** installed on your computer ([download here](https://nodejs.org) — choose the LTS version)
-2. **A code editor** — we recommend [VS Code](https://code.visualstudio.com/) or [Cursor](https://cursor.com/)
-3. **A Gemini API key** (free) — get one at [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-4. **An AI coding assistant** — Claude Code, Cursor, Windsurf, or similar
-
-## Quick Start
-
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Set up your environment variables
-cp .env.example .env
-# Then edit .env and add your Gemini API key
-
-# 3. Start the development server
-npm run dev
-
-# 4. Open http://localhost:5173 in your browser
-```
-
-## Importing Your Project
-
-Have an export from AI Studio, Bolt, or another platform? Ask your AI assistant:
-
-> "Help me import my project from [platform name]. The files are at [location]."
-
-The assistant has detailed instructions for handling each platform's export format.
-
-## Deploying to the Internet
-
-When you're ready to share your app, ask your AI assistant:
-
-> "Help me deploy this to Netlify."
-
-The assistant will walk you through setting up GitHub and Netlify (both free). The short version:
-
-1. **Push your code to GitHub** — create a repo and push
-2. **Create a free Netlify account** at [app.netlify.com](https://app.netlify.com/signup) (sign up with GitHub)
-3. **Import your repo** — Add new site > Import an existing project > choose your GitHub repo
-4. **Set your environment variables on Netlify** — this is the step people miss!
-   - Go to **Site configuration > Environment variables**
-   - Add `GEMINI_API_KEY` with your real API key
-   - (Add any other secrets from your `.env` file too)
-5. **Trigger a redeploy** — Deploys > Trigger deploy > Deploy site
-
-Your `.env` file only works locally. Netlify needs its own copy of those secrets, set through its dashboard. Without this step, your AI features won't work on the live site.
-
-## Project Structure
-
-| Folder/File | What It Does |
-|---|---|
-| `app/routes/home.tsx` | Your main page — replace this with your app |
-| `app/routes/api.gemini.tsx` | Server-side route that talks to Gemini (keeps API key safe) |
-| `app/lib/gemini.server.ts` | Gemini API helper functions |
-| `app/components/` | Reusable UI pieces (buttons, cards, etc.) |
-| `CLAUDE.md` | Instructions for your AI coding assistant |
-| `.env` | Your secret API keys (never shared) |
-
-## Adding AI Features
-
-Every AI feature follows this pattern:
-
-1. **Server function** — The code that talks to Gemini (in a `.server.ts` file)
-2. **API route** — An endpoint the browser can call (in `app/routes/`)
-3. **UI component** — The button/form/display that the user sees
-
-Ask your AI assistant: "Help me add an API route for [describe your feature]."
-
-## Need Help?
-
-- Ask your AI assistant! The `CLAUDE.md` file gives it detailed context about this project.
-- [React Router docs](https://reactrouter.com)
-- [Tailwind CSS docs](https://tailwindcss.com/docs)
-- [Gemini API docs](https://ai.google.dev/gemini-api/docs)
+**Live demo:** [vibe-code-launchpad.netlify.app](https://vibe-code-launchpad.netlify.app)
 
 ---
 
-*Built with React Router 7, Tailwind CSS, Google Gemini, and Netlify.*
+## Quick Reference
+
+### Commands
+
+| Command | What it does |
+|---|---|
+| `npm install` | Install dependencies (run first) |
+| `npm run dev` | Start the dev server at localhost:5173 |
+| `npm run build` | Build for production |
+| `npm run typecheck` | Check for code errors |
+
+### Project Structure
+
+| File / Folder | What it is |
+|---|---|
+| `app/routes/home.tsx` | Your main page — replace with your app |
+| `app/routes/api.gemini.tsx` | Server route that talks to Gemini safely |
+| `app/lib/gemini.server.ts` | Gemini API helpers |
+| `app/components/` | Reusable UI pieces |
+| `.env` | Your API keys (never shared) |
+| `AGENTS.md` | Instructions for your AI coding assistant |
+
+### AI Context Files
+
+This template includes instructions for multiple AI coding tools:
+
+| File | Tool |
+|---|---|
+| `AGENTS.md` | Canonical source (Codex, Windsurf, others) |
+| `CLAUDE.md` | Claude Code |
+| `.cursorrules` | Cursor |
+
+All three contain the same guidance — security rules, stack documentation, import procedures, and deployment instructions.
+
+---
+
+## Stack
+
+React Router 7 (SSR) + Tailwind CSS v4 + Google Gemini API + Netlify
+
+SSR mode keeps API keys on the server. Netlify deploys automatically from GitHub. Everything has a free tier.
+
+---
+
+*Built by Kyle Fidalgo for BC Law's vibe-coding curriculum.*

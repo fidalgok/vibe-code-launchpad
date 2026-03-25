@@ -1,6 +1,6 @@
-# CLAUDE.md — Vibe Code Launchpad
+# .cursorrules — Vibe Code Launchpad
 
-> **Sync note:** This file is a copy of `AGENTS.md` (the canonical version) formatted for Claude Code. If you update guidance here, update `AGENTS.md` and `.cursorrules` too.
+> **Sync note:** This file is a copy of `AGENTS.md` (the canonical version) formatted for Cursor. If you update guidance here, update `AGENTS.md` and `CLAUDE.md` too.
 
 ## Who You're Working With
 
@@ -79,8 +79,10 @@ If the user asks "why can't I just put the API key in my component?" — explain
 
 ```
 vibe-code-launchpad/
-├── CLAUDE.md                  # This file — your guide
-├── README.md                  # Student-facing setup guide
+├── AGENTS.md                  # This file — canonical AI context
+├── CLAUDE.md                  # AI context for Claude Code
+├── .cursorrules               # AI context for Cursor
+├── README.md                  # Quick reference
 ├── GETTING-STARTED.md         # First-session walkthrough
 ├── .env.example               # Environment variable template
 ├── .gitignore                 # Files that should not be committed
@@ -106,7 +108,7 @@ vibe-code-launchpad/
 │
 ├── public/                    # Static files (images, favicon, etc.)
 │
-└── .claude/                   # AI assistant tools
+└── .claude/                   # AI assistant tools (Claude Code skills)
     └── skills/                # Specialized skills for common tasks
 ```
 
@@ -235,9 +237,11 @@ If they have a single HTML file with embedded JavaScript:
 
 ### First-Time Setup
 
+If the student used "Use this template" on GitHub, they already have a repo. Otherwise:
+
 1. **Create a GitHub account** (if they don't have one): https://github.com/signup
 2. **Create a Netlify account** (free): https://app.netlify.com/signup — sign up with GitHub
-3. **Push code to GitHub:**
+3. **Push code to GitHub** (if not already there):
    ```bash
    git init
    git add .
@@ -253,10 +257,11 @@ If they have a single HTML file with embedded JavaScript:
    - Choose GitHub, find the repo
    - Build settings should auto-detect (if not: build command = `npm run build`, publish directory = `build/client`)
    - Click "Deploy"
-5. **Set environment variables on Netlify:**
-   - Go to Site settings > Environment variables
+5. **Set environment variables on Netlify** — this is the step people forget!
+   - Go to **Site configuration > Environment variables**
    - Add `GEMINI_API_KEY` with the real API key value
    - Trigger a redeploy
+   - Without this, the site will load but AI features will fail
 
 ### After Setup
 
@@ -289,7 +294,7 @@ If the app needs "Sign in with Google":
 2. Add `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` to `.env`
 3. Implement the OAuth flow (redirect → callback → session)
 
-**Use the `/add-auth` skill for a guided walkthrough.**
+**If using Claude Code, use the `/add-auth` skill for a guided walkthrough.**
 
 ---
 
