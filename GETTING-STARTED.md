@@ -36,15 +36,15 @@ Choose the **x64** installer unless you know you have an ARM-based Windows devic
 
 ### 2. Install an AI Coding Tool
 
-You need an AI assistant that can read and edit the files in your project. Pick one:
+You need an AI assistant that can read and edit the files in your project. All three options below are desktop apps — pick whichever fits your situation:
 
-| Tool | Best for | Cost |
+| Tool | What it feels like | Cost |
 |---|---|---|
-| **[Cursor](https://cursor.com)** | Easiest to start with. Visual editor with AI chat built in. | Free tier includes generous usage. Supports Claude, GPT-5, Gemini, and more. |
-| **[Claude Code Desktop](https://code.claude.com/docs/en/desktop-quickstart)** | Powerful and approachable. Desktop app with visual interface. | Claude Pro subscription ($20/mo) or Max ($100/mo). |
-| **[OpenAI Codex](https://openai.com/codex/)** | Good if you already use ChatGPT. | Free to start with a ChatGPT account. |
+| **[Claude Code Desktop](https://code.claude.com/docs/en/desktop-quickstart)** | A desktop app you point at your project folder. You chat, it builds. | Claude Pro ($20/mo) or Max ($100/mo). |
+| **[OpenAI Codex](https://openai.com/codex/)** | Similar desktop app experience. Chat with AI, it writes the code. | Free to start with a ChatGPT account. |
+| **[Cursor](https://cursor.com)** | A full code editor with AI chat built in. More like a professional developer tool. | Free tier with generous usage. Supports Claude, GPT-5, Gemini, and more. |
 
-**Not sure? Start with Cursor.** It's the most visual, has a free tier, and works with many different AI models.
+**Not sure which to pick?** If you already pay for Claude, grab **Claude Code Desktop**. If you use ChatGPT, try **Codex** (it's free to start). If you don't have either, **Cursor** has a free tier that works great. All three will read this project's instructions and know how to help you.
 
 ### 3. Get a Gemini API Key
 
