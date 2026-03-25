@@ -48,12 +48,18 @@ You need an AI assistant that can read and edit the files in your project. All t
 
 ### 3. Get a Gemini API Key
 
-This is a free key that lets your app talk to Google's AI.
+This is a free key that lets your app talk to Google's AI. You need this for the AI features in your app (separate from the AI coding tool above).
+
+**If your instructor provided a key for the class:** Use that! Skip to Step 1.
+
+**If you need your own key:**
 
 1. Go to [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-2. Sign in with your Google account
+2. Sign in with a **personal Google account** (not your school/work account — many institutions block access to AI Studio)
 3. Click **"Create API Key"**
 4. Copy the key and save it somewhere safe (you'll need it in a minute)
+
+**BC students:** Your BC Google account won't work with AI Studio. Use a personal Gmail account instead. If you don't have one, you can create a free Google account at [accounts.google.com](https://accounts.google.com/signup).
 
 ---
 
